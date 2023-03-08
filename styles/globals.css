@@ -38,6 +38,9 @@ button {
   width: 100%;
   border-top: #333 solid 1px ;
   border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
 }
 
@@ -47,4 +50,9 @@ button {
 }
 form {
   padding-bottom: 55px;
+}
+
+.btn {
+  background-color: #508376;
+  height: auto;
 }

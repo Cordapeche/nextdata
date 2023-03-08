@@ -3,27 +3,33 @@ import { useState } from "react";
 const Create = () => {
     const [name, setUser] = useState('');
     const [text, setText] = useState('');
-    const [comments, setComts] = useState([]);
+    const [comments, setComments] = useState([]);
 
     const handSubmit = (e) => {
         e.preventDefault();
         const comment = { name, text };
 
-        fetch('mongodb://localhost:27017/commentaries', {
+        fetch('/api/comments/new', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(comment)
         }).then(() => {
-            console.log('submit');
+            console.log(comment);
         })
 
 
     }
 
     const fetchComnts = async () => {
-        const response = await fetch('/api/comments');
-        const data = await response.json();
-        setComts(data)
+        const res = await fetch('/api/comments');
+        const data = await res.json();
+        setComments(data)
+    }
+
+    const editComnts = async () => {
+        const res = await fetch('/api/comments');
+        const data = await res.json();
+        editComnts(data)
     }
 
     return (
@@ -73,6 +79,8 @@ const Create = () => {
                                         {comment.id} {comment.text}
                                     </p>
                                 </div>
+
+                                <button className="btn" onClick={editComnts}> Edit</button>
 
                             </div>
                         )
