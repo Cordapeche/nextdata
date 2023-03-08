@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 const Create = () => {
-    const [user, setUser] = useState('');
+    const [name, setUser] = useState('');
     const [text, setText] = useState('');
     const [comments, setComts] = useState([]);
 
     const handSubmit = (e) => {
         e.preventDefault();
         const comment = {
-            user, text
+            name, text
         };
 
         fetch('mongodb://localhost:27017/commentaries', {
@@ -39,7 +39,7 @@ const Create = () => {
                     <input
                         type="text"
                         required
-                        value={user}
+                        value={name}
                         onChange={(e) => setUser(e.target.value)}
                     />
 
@@ -53,9 +53,9 @@ const Create = () => {
                     <button
                         type="submit"
                         value="Envoyer"
-                        >
-                            Envoyer
-                        </button>
+                    >
+                        Envoyer
+                    </button>
                 </form>
             </div>
 
@@ -63,9 +63,16 @@ const Create = () => {
             {
                 comments.map(comment => {
                     return (
-                        <div key={comment.id}>
-                            {comment.id} {comment.text}
-                        </div>
+                        <>
+                            <div key={comment.id}>
+                                {comment.id} {comment.name}
+                            </div>
+                            <div key={comment.id}>
+                                {comment.id} {comment.text}
+                            </div>
+
+                        </>
+
                     )
                 })
             }

@@ -33,3 +33,18 @@ button {
   box-sizing: block;
   color: #333;
 }
+.block-comment {
+  margin-top: 15px;  
+  width: 100%;
+  border-top: #333 solid 1px ;
+  border-radius: 5px;
+
+}
+
+.comment {
+  margin-top: 5px; 
+  padding-left: 15px;
+}
+form {
+  padding-bottom: 55px;
+}
