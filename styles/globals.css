@@ -1,0 +1,35 @@
+
+/* base styles */
+* {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.formular {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+
+}
+h1 {
+  padding-bottom: 20px;
+}
+
+button {
+  background-color: #8e4ae7;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+ input,  textarea {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: block;
+  color: #333;
+}
