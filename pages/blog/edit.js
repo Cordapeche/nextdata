@@ -8,12 +8,16 @@ const Create = () => {
         e.preventDefault();
         const comment = { name, text };
 
-        fetch('/api/comments/new', {
-            method: 'GET',
+        const options = {
+            method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(comment)
-        }).then(() => {
-        })
+        };
+
+        fetch('/api/comments/edit', options)
+        .then(() => {
+
+        });
     }
 
     return (
