@@ -7,7 +7,6 @@ function comtsPage() {
     const [comments, setComts] = useState([]);
     const router = useRouter();
     // Supprimer un commmentaire et mettre à jour dans le client
-    
     const handleDelete =  (id) => {
         fetch("/api/comments/"+id+"/delete")
         .then(async (res) => {

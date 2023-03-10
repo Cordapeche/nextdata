@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 // se connecter à mongodb
 mongoose.connect('mongodb://localhost:27017/commentaries');
 // Importer notre model
-import Commentary from "@/models/commentary";
+import Commentary from "@/models/eshop";
 
 const Delete = async (req, res) => {
 

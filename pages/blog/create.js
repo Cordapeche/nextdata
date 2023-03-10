@@ -1,90 +1,78 @@
-import { useState } from "react";
+import { useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import pic from '../../public/images/plant.jpg';
+
+
 
 const Create = () => {
-    const [name, setUser] = useState('');
-    const [text, setText] = useState('');
-    const [comments, setComments] = useState([]);
 
-    // Cree un nouveau commentaire
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const router = useRouter();
+
+    // Cree un nouveau article
     const handSubmit = (e) => {
         e.preventDefault();
-        const comment = { name, text };
+        const article = { title, price, description };
 
-        fetch('/api/comments/new', {
+
+        console.log('data', article);
+
+        fetch('/api/admins/new', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(comment)
+            body: JSON.stringify(article)
         }).then(() => {
-            
         })
-    }
-
-    // Récupérer tout les commentaires (fetch = récupérer)
-    const fetchComnts = async () => {
-        const res = await fetch('/api/comments');
-        const data = await res.json();
-        setComments(data)
-    }
-
-    const editComnts = async () => {
-        const res = await fetch('/api/comments');
-        const data = await res.json();
-        editComnts(data)
+        router.push('/admin')
     }
 
     return (
-
         <>
+            <div className='container-lg'>
+                <div className='col'>
+                    <div className='formular'>
+                        <div className='form'>
 
-            <div className='formular'>
+                            <form onSubmit={handSubmit}>
+                                <h1>Ajour un article</h1><br/>
 
-                <div className='form'>
-
-                    <h1> Ajouter un commentair</h1>
-                    <form onSubmit={handSubmit}>
-                        <label>Nom</label>
-                        <input
-                            type="text"
-                            required
-                            value={name}
-                            onChange={(e) => setUser(e.target.value)}
-                        />
-
-                        <label>Commentaire</label>
-                        <input
-                            type="text"
-                            required
-                            value={text}
-                            onChange={(e) => setText(e.target.value)}
-                        />
-                        <button
-                            type="submit"
-                        >
-                            Envoyer
-                        </button>
-                    </form>
+                                <Image src={pic} className='card-img-top' alt='some images' /><br/>
+                                <label><h5>Nom</h5></label>
+                                <input
+                                    className='p-y'
+                                    type="text"
+                                    required
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                                <label><h5>Price</h5></label>
+                                <input
+                                    className='p-y'
+                                    type="text"
+                                    required
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
+                                <label><h5>Description</h5></label>
+                                <input
+                                    className='p-y'
+                                    type="text"
+                                    required
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                                <button className='btn-custom'
+                                    type="submit"
+                                >
+                                    Ajouter un article
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
-                <button onClick={fetchComnts}>All comments</button>
-                {
-                    comments.map(comment => {
-                        return (
-                            <div className="block-comment">
-                                <div className="comment">
-                                    <h3 key={comment.id}>
-                                        {comment.id} {comment.name}
-                                    </h3>
-                                    <p key={comment.id}>
-                                        {comment.id} {comment.text}
-                                    </p>
-                                </div>
-
-                                 <a href={'/blog/edit/' + comment._id} className="btn" > Edit</a>
-
-                            </div>
-                        )
-                    })
-                }
             </div>
         </>
     )

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 mongoose.connect('mongodb://localhost:27017/commentaries');
 
-import Commentary from "@/models/commentary";
+import Commentary from "@/models/eshop";
 
 export default async function handler(req, res) {
     // creation des parametres

@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-mongoose.connect('mongodb://localhost:27017/commentaries');
+mongoose.connect('mongodb://localhost:27017/eshop');
 
-import Commentary from "@/models/eshop";
+import Eshop from "@/models/eshop";
 
 export default async function handler(req, res) {
-  const addnew = new Commentary(req.body)
+  const addnew = new Eshop(req.body)
 
   await addnew.save()
 

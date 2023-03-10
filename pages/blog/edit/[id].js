@@ -1,84 +1,98 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+// import pic from '../../../public/images/plant.jpg';
 
-
-
-const Edit = () => {
-    const [name, setName] = useState('');
-    const [text, setText] = useState('');
-    const [error, setError] = useState('');
+const Create = () => {
+    const [title, setTitle] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
 
     const router = useRouter();
-    const handleSubmit = (e) => {
+    const handSubmit = (e) => {
         e.preventDefault();
         var id = router.query.id;
-        const comment = { name, text, id };
+        const article = { title, price, description, id };
 
-        fetch('/api/comments/edit',{
+        fetch('/api/admins/edit', {
             method: 'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(comment)
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(article)
         }).then(async (response) => {
             const res = await response.json();
-            if(res.error)
-                alert(res.message);
-            else
-                setError(res.message);
-            
-            setTimeout(() => {
-                setError("");
-            }, 5000);
+
         })
-    
-        console.log("fchhfdcxhgrfd");
+        router.push('/admin')
     }
     useEffect(() => {
-        if(!router.isReady) return;
+        if (!router.isReady) return;
         const loadData = async () => {
             // Les parametres => le id quoi
             var id = router.query.id;
             // requete vers le serveur
-            fetch('/api/comments/' + id )
-            .then(async(res) => {
-                const data = await res.json();
-                setName(data.name);
-                setText(data.text);
-            });
+            fetch('/api/admins/' + id)
+                .then(async (res) => {
+                    const data = await res.json();
+                    setTitle(data.title);
+                    setPrice(data.price);
+                    setDescription(data.description);
+                });
         };
         loadData();
-     }, [router.isReady]);
+    }, [router.isReady]);
 
     return (
-        
-             <div className='formular'>
-                <div className='form'>
-                    <h1> Editer le commentait </h1>
-                    {error}
-                    <form onSubmit={handleSubmit}>
-                        <label>Nom</label>
-                        <input
-                            type="text"
-                            placeholder=""
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <label>Commentaire</label>
-                        <input
-                            type="text"
-                            placeholder=""
-                            value={text}
-                            onChange={(e) => setText(e.target.value)}
-                        />
-                        <button
-                            type="submit"
-                        >
-                            Editer
-                        </button>
-                    </form>
+        <>
+            <div className='container-lg'>
+                <div className='col'>
+                    <div className='formular'>
+                        <div className='form'>
+
+                            <form onSubmit={handSubmit}>
+
+                                <h1>Update {title.id}</h1>
+
+                                {/* <Image src={pic} className='card-img-top' alt='some images' /> */}
+                                <label>Nom</label>
+                                <input
+                                    className='p-y'
+                                    type="text"
+                                    required
+                                    placeholder={title.id}
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                                <label>Prix</label>
+                                <input
+                                    className='p-y'
+                                    type="text"
+                                    required
+                                    placeholder={price.id}
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
+                                <label>Description</label>
+                                <input
+                                    className='p-y'
+                                    type="text"
+                                    required
+                                    placeholder={description.id}
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                                <button className='btn-custom'
+                                    type="submit"
+                                >
+                                    Update
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        
+        </>
     )
+
+
 }
 
-export default Edit;
+export default Create;

@@ -1,43 +1,43 @@
-import { useState } from "react";
-import pic from '../../public/images/plant.jpg';
+import { useState } from 'react';
+import Image from 'next/image';
+// import pic from '../../../public/images/plant.jpg'
+
+
 
 const Create = () => {
+
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
 
+    // Cree un nouveau article
     const handSubmit = (e) => {
         e.preventDefault();
         const article = { title, price, description };
         
-        console.log('articles', article);
 
-        const options = {
+        console.log('data', article);
+
+        fetch('/api/admin/new', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(article)
-        };
-        
-
-        fetch('/api/admins/edit', options)
-        .then(() => {
-
-        });
+        }).then(() => {
+        })
     }
 
     return (
         <>
             <div className='formular'>
                 <div className='form'>
-                    
+                    <h1> Ajouter un commentair</h1>
                     <form onSubmit={handSubmit}>
-                    <h1>Modifier {title.id}</h1>
-                        <Image src={pic} className='card-img-top' alt='some images' />
+
+                        {/* <Image src={pic} className='card-img-top' alt='some images' /> */}
                         <label>Nom</label>
                         <input
                             type="text"
                             required
-                            placeholder={title.id}
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
@@ -45,30 +45,26 @@ const Create = () => {
                         <input
                             type="text"
                             required
-                            placeholder={price.id}
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                         />
-                        <label>Description</label>
+                        <label>Commentaire</label>
                         <input
                             type="text"
                             required
-                            placeholder={description.id}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                         <button
                             type="submit"
                         >
-                            Editer
+                            Ajouter
                         </button>
                     </form>
                 </div>
             </div>
         </>
     )
-
-    
 }
 
 export default Create;
