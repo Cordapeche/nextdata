@@ -1,58 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
-/* base styles */
-* {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+  background: #f2f2f2;
   color: #333;
+  font-family: "Nunito";
 }
-
-.formular {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-
-}
-h1 {
-  padding-bottom: 20px;
-}
-
-button {
-  background-color: #8e4ae7;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
- input,  textarea {
-  width: 100%;
-  padding: 6px 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  box-sizing: block;
+a {
   color: #333;
+  text-decoration: none;
 }
-.block-comment {
-  margin-top: 15px;  
-  width: 100%;
-  border-top: #333 solid 1px ;
-  border-radius: 5px;
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+}
+nav {
+  margin: 10px auto 80px;
+  padding: 10px 0;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-bottom: 1px solid #ddd;
 }
 
-.comment {
-  margin-top: 5px; 
-  padding-left: 15px;
+nav a {
+  margin-left: 12px;
 }
-form {
-  padding-bottom: 55px;
+nav .logo {
+  margin-right: auto;
+}
+footer {
+  display: block;
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 60px;
+  color: #777;
+  border-top: 1px solid #eaeaea;
 }
 
-.btn {
-  background-color: #508376;
-  height: auto;
+.col-4 {
+  background-color: brown;
+  margin-bottom: 15px;
 }
